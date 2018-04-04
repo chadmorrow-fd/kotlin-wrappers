@@ -9,6 +9,15 @@ external fun <P : RProps> cloneElement(element: ReactElement, props: P, vararg c
 external fun cloneElement(element: dynamic, props: dynamic, vararg child: Any?): ReactElement
 external fun isValidElement(element: Any): Boolean
 
+abstract external class Provider : ReactElement
+abstract external class Consumer : ReactElement
+
+external interface Context<T> {
+    var Provider: Provider
+    var Consumer: Consumer
+}
+external fun <T> createContext(defaultValue: T, calculateChangedBits: ((prev: T, next: T) -> Number)? = definedExternally /* null */): Context<T> = definedExternally
+
 external object Children {
     fun <T> map(children: Any?, handler: (Child) -> T): Array<out T>?
     fun <T> map(children: Any?, handler: (Child) -> T, context: Any?): Array<out T>?
